@@ -1,6 +1,6 @@
 if (Hls.isSupported()) {
-  var video = document.getElementById("video");
-  var hls = new Hls();
+  let video = document.getElementById("video");
+  let hls = new Hls();
   hls.on(Hls.Events.MEDIA_ATTACHED, function () {
     console.log("video and hls.js are now bound together !");
   });
