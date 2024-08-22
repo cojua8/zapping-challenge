@@ -1,10 +1,7 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
   "name": "Zapping challenge",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  "remoteUser": "node",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
   "customizations": {
     "vscode": {
       "extensions": [
