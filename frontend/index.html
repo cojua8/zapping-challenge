@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+</head>
+<body>
+    <h1>Welcome to My Website</h1>
+    <p>This is a minimal HTML file.</p>
+</body>
+<script>
+    fetch('http://localhost:3000/')
+        .then(response => response.json())
+        .then(data => console.log(data));
+</script>
+</html>
