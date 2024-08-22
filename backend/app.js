@@ -8,14 +8,15 @@ app.use(cors({ origin: "http://localhost:5500" }));
 app.get("/", (req, res) => {
   res.send({ result: "Hello World!" });
 });
-
-app.get("/video.m3u8", (req, res) => {
-  let file = createPlaylistFile();
+let seq = 0;
+app.get("/video/video.m3u8", (req, res) => {
+  console.log("requesting playlist file");
+  let file = createPlaylistFile(seq);
   res.header("Content-Type", "application/vnd.apple.mpegurl");
   res.send(file);
 });
 
-app.get("/resources/:resource", (req, res) => {
+app.get("/video/:resource", (req, res) => {
   console.log("requesting file", req.params.resource);
   res.sendFile(path.join(__dirname, "videos", req.params.resource));
 });
@@ -25,8 +26,7 @@ app.listen(port, () => {
   console.log(`Zapping HLS app listening on port ${port}`);
 });
 
-function createPlaylistFile() {
-  let sequenceCounter = 0;
+function createPlaylistFile(sequenceCounter) {
   let playlistFile =
     createPlaylistHeaders(sequenceCounter) +
     createSegment(sequenceCounter) +
@@ -43,7 +43,7 @@ function createPlaylistFile() {
 function createSegment(segmentCounter) {
   let extinf =
     segmentCounter === 63 ? "#EXTINF:4.566667,\n" : "#EXTINF:10.000000,\n";
-  let segmentFile = `http://localhost:3000/resources/segment${segmentCounter}.ts\n`;
+  let segmentFile = `segment${segmentCounter}.ts\n`;
 
   return extinf + segmentFile;
 }

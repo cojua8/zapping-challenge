@@ -9,7 +9,7 @@ if (Hls.isSupported()) {
       "manifest loaded, found " + data.levels.length + " quality level"
     );
   });
-  hls.loadSource("http://localhost:3000/video.m3u8");
+  hls.loadSource("http://localhost:3000/video/video.m3u8");
   // bind them together
   hls.attachMedia(video);
 }
