@@ -3,7 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5500" }));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send({ result: "Hello World!" });
