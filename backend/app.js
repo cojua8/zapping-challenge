@@ -14,6 +14,12 @@ app.get("/video/video.m3u8", (req, res) => {
   let file = createPlaylistFile(seq);
   res.header("Content-Type", "application/vnd.apple.mpegurl");
   res.send(file);
+
+  if (seq < 61) {
+    seq++;
+  } else {
+    seq = 0;
+  }
 });
 
 app.get("/video/:resource", (req, res) => {
