@@ -1,21 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="//cdn.jsdelivr.net/npm/hls.js@1"></script>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Zapping HLS</title>
   </head>
   <body>
-    <h1>Welcome to My Website</h1>
-    <p>This is a minimal HTML file.</p>
-
-    <video id="video" controls></video>
+    <h1>Home</h1>
+    <a id="signup-page" href="signup.html">Sign Up</a>
+    <a id="video-page" href="video.html">Video</a>
   </body>
 
-  <script>
-    fetch("http://localhost:3000/")
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  </script>
-  <script type="module" src="./index.js"></script>
+  <script type="module" src="index.js"></script>
 </html>
