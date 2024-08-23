@@ -1,8 +1,11 @@
+const TOTAL_SEGMENTS = 63;
+const PLAYLIST_SIZE = 3;
+const MAX_SEQUENCE_COUNTER = TOTAL_SEGMENTS - PLAYLIST_SIZE + 1;
+
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const app = express();
-
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -15,11 +18,7 @@ app.get("/video/video.m3u8", (req, res) => {
   res.header("Content-Type", "application/vnd.apple.mpegurl");
   res.send(file);
 
-  if (seq < 61) {
-    seq++;
-  } else {
-    seq = 0;
-  }
+  seq = ++seq % (MAX_SEQUENCE_COUNTER + 1);
 });
 
 app.get("/video/:resource", (req, res) => {
@@ -33,13 +32,12 @@ app.listen(port, () => {
 });
 
 function createPlaylistFile(sequenceCounter) {
-  let playlistFile =
-    createPlaylistHeaders(sequenceCounter) +
-    createSegment(sequenceCounter) +
-    createSegment(sequenceCounter + 1) +
-    createSegment(sequenceCounter + 2);
+  let playlistFile = createPlaylistHeaders(sequenceCounter);
+  for (let counter = 0; counter < PLAYLIST_SIZE; counter++) {
+    playlistFile += createSegment(sequenceCounter + counter);
+  }
 
-  if (sequenceCounter + 2 === 63) {
+  if (sequenceCounter === MAX_SEQUENCE_COUNTER) {
     playlistFile = playlistFile + "#EXT-X-ENDLIST";
   }
 
@@ -48,7 +46,10 @@ function createPlaylistFile(sequenceCounter) {
 
 function createSegment(segmentCounter) {
   let extinf =
-    segmentCounter === 63 ? "#EXTINF:4.566667,\n" : "#EXTINF:10.000000,\n";
+    segmentCounter === TOTAL_SEGMENTS
+      ? "#EXTINF:4.566667,\n"
+      : "#EXTINF:10.000000,\n";
+
   let segmentFile = `segment${segmentCounter}.ts\n`;
 
   return extinf + segmentFile;
