@@ -10,7 +10,10 @@ window.onload = () => {
     logoutAnchor.click();
     return;
   }
+  configureVideo();
+};
 
+function configureVideo() {
   if (Hls.isSupported()) {
     let video = document.getElementById("video");
     let hls = new Hls();
@@ -26,4 +29,4 @@ window.onload = () => {
     // bind them together
     hls.attachMedia(video);
   }
-};
+}
