@@ -1,40 +1,48 @@
 const express = require("express");
-
+const { getUser, createUser } = require("./database");
 const usersRouter = express.Router();
 module.exports = usersRouter;
 
 usersRouter.use(express.json());
 
-users = {};
-
 usersRouter.post("/login", (req, res) => {
-  console.log("Logging in user", req.body);
   let { email, password } = req.body;
-
-  if (!users[email]) {
-    res.sendStatus(400);
-    return;
-  } else if (users[email].password !== password) {
-    res.sendStatus(400);
-    return;
-  } else {
-    let name = users[email].name;
-    res.send({ name, email });
-  }
+  let user = getUser(email, (err, row) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    if (row) {
+      if (row.password === password) {
+        console.log("Logging in user", req.body);
+        res.send({ name: row.name, email: row.email });
+      }
+    } else {
+      res.status(400).json({ error: "Bad email or password" });
+    }
+  });
 });
 
-usersRouter.post("/register", (req, res) => {
-  console.log("Registering user", JSON.stringify(req.body));
+usersRouter.post("/register", async (req, res) => {
   let { name, email, password, confirmPassword } = req.body;
 
   if (password !== confirmPassword) {
-    res.sendStatus(400);
+    res.status(400).json({ error: "Passwords do not match" });
     return;
-  } else if (users[email]) {
-    res.sendStatus(400);
-    return;
-  } else {
-    users[email] = { password, name };
-    res.send({ name, email });
   }
+
+  getUser(email, (err, row) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    if (row) {
+      console.log("User already exists", row);
+      res.status(400).json({ error: "User already exists" });
+    } else {
+      console.log("Registering user", JSON.stringify(req.body));
+      createUser(email, name, password);
+      res.send({ name, email });
+    }
+  });
 });
