@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const videoRouter = require("./video");
+const usersRouter = require("./users");
 
 const app = express();
 app.use(cors());
@@ -10,6 +11,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/video", videoRouter);
+app.use("/users", usersRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
