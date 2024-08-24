@@ -5,11 +5,7 @@ const usersRouter = require("./users");
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send({ result: "Hello World!" });
-});
-
-app.use("/frontend", express.static(path.join(__dirname, "../frontend")));
+app.use("/", express.static(path.join(__dirname, "../frontend")));
 
 app.use("/video", videoRouter);
 app.use("/users", usersRouter);
