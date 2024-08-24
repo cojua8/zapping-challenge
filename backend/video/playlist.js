@@ -59,7 +59,7 @@ function createSegment(segmentCounter) {
   if (segmentCounter < constants.TOTAL_SEGMENTS) {
     return `#EXTINF:10.000000,\n${segmentFile}\n`;
   } else if (segmentCounter === constants.TOTAL_SEGMENTS) {
-    return `"#EXTINF:4.566667,\n${segmentFile}\n`;
+    return `#EXTINF:4.566667,\n${segmentFile}\n`;
   } else {
     return "";
   }
