@@ -1,12 +1,12 @@
 function logout() {
-  sessionStorage.removeItem("key");
+  sessionStorage.removeItem("user");
 }
 
 let logoutAnchor = document.getElementById("logout");
 logoutAnchor.addEventListener("click", logout);
 
 window.onload = () => {
-  if (!sessionStorage.getItem("key")) {
+  if (!sessionStorage.getItem("user")) {
     logoutAnchor.click();
     return;
   }
