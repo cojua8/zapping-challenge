@@ -1,3 +1,4 @@
 **/node_modules/
 .vscode/
-backend/videos/
+segment*.ts
+.DS_Store
