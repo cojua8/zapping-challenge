@@ -1,14 +1,15 @@
 const express = require("express");
-const cors = require("cors");
+const path = require("path");
 const videoRouter = require("./video/video");
 const usersRouter = require("./users");
 
 const app = express();
-app.use(cors());
 
 app.get("/", (req, res) => {
   res.send({ result: "Hello World!" });
 });
+
+app.use("/frontend", express.static(path.join(__dirname, "../frontend")));
 
 app.use("/video", videoRouter);
 app.use("/users", usersRouter);
