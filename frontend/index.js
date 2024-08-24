@@ -4,7 +4,7 @@ formElement.addEventListener("submit", async (e) => {
   e.preventDefault();
   console.log("submitting");
 
-  let response = await fetch("http://localhost:3000/users/login", {
+  let response = await fetch("/users/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
