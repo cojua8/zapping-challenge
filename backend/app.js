@@ -6,7 +6,6 @@ const usersRouter = require("./users");
 const app = express();
 
 app.use("/", express.static(path.join(__dirname, "../frontend")));
-
 app.use("/video", videoRouter);
 app.use("/users", usersRouter);
 
