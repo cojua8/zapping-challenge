@@ -8,7 +8,10 @@ db.serialize(() => {
   );
 });
 
-async function getUser(email, callback) {
+/**
+ * Gets a user by the provided email, and execute callback
+ */
+function getUser(email, callback) {
   db.get(
     "SELECT name, email, password FROM users WHERE email = ?",
     [email],
@@ -16,6 +19,7 @@ async function getUser(email, callback) {
   );
 }
 
+/** Creates a new user */
 function createUser(email, name, password) {
   db.run(
     "INSERT INTO users (email, name, password) VALUES (?, ?, ?)",
