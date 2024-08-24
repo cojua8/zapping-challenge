@@ -1,0 +1,10 @@
+const TOTAL_SEGMENTS = 63;
+const PLAYLIST_SIZE = 3;
+
+const constants = {
+  TOTAL_SEGMENTS: TOTAL_SEGMENTS,
+  PLAYLIST_SIZE: PLAYLIST_SIZE,
+  MAX_SEQUENCE_COUNTER: TOTAL_SEGMENTS - PLAYLIST_SIZE + 1,
+};
+
+module.exports = constants;
