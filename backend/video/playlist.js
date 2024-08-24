@@ -44,5 +44,8 @@ function createPlaylistHeaders(sequenceCounter) {
 }
 
 function elapsedSegments() {
-  return Math.trunc((Date.now() - startedTimestamp) / 10000);
+  return Math.min(
+    Math.trunc((Date.now() - startedTimestamp) / 10000),
+    constants.TOTAL_SEGMENTS
+  );
 }
