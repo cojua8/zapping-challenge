@@ -7,16 +7,14 @@ usersRouter.use(express.json());
 
 usersRouter.post("/login", (req, res) => {
   let { email, password } = req.body;
-  let user = getUser(email, (err, row) => {
+  getUser(email, (err, row) => {
     if (err) {
       console.error(err);
       return;
     }
-    if (row) {
-      if (row.password === password) {
+    if (row && row.password === password) {
         console.log("Logging in user", req.body);
         res.send({ name: row.name, email: row.email });
-      }
     } else {
       res.status(400).json({ error: "BAD_CREDENTIALS" });
     }
