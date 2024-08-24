@@ -18,7 +18,7 @@ usersRouter.post("/login", (req, res) => {
         res.send({ name: row.name, email: row.email });
       }
     } else {
-      res.status(400).json({ error: "Bad email or password" });
+      res.status(400).json({ error: "BAD_CREDENTIALS" });
     }
   });
 });
@@ -27,7 +27,7 @@ usersRouter.post("/register", async (req, res) => {
   let { name, email, password, confirmPassword } = req.body;
 
   if (password !== confirmPassword) {
-    res.status(400).json({ error: "Passwords do not match" });
+    res.status(400).json({ error: "PASSWORDS_DO_NOT_MATCH" });
     return;
   }
 
@@ -38,7 +38,7 @@ usersRouter.post("/register", async (req, res) => {
     }
     if (row) {
       console.log("User already exists", row);
-      res.status(400).json({ error: "User already exists" });
+      res.status(400).json({ error: "USER_ALREADY_EXISTS" });
     } else {
       console.log("Registering user", JSON.stringify(req.body));
       createUser(email, name, password);
