@@ -1,0 +1,20 @@
+const express = require("express");
+const path = require("path");
+const createPlaylistFile = require("./playlist");
+
+const videoRouter = express.Router();
+module.exports = videoRouter;
+
+videoRouter.get("/video.m3u8", (req, res) => {
+  console.log("requesting playlist file");
+  let file = createPlaylistFile();
+  console.log(file.toString());
+
+  res.header("Content-Type", "application/vnd.apple.mpegurl");
+  res.send(file);
+});
+
+videoRouter.get("/:resource", (req, res) => {
+  console.log("requesting file", req.params.resource);
+  res.sendFile(path.join(__dirname, "videos", req.params.resource));
+});
