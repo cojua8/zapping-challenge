@@ -1,15 +1,21 @@
-function logout() {
-  sessionStorage.removeItem("user");
-}
+let user = undefined;
 
 let logoutAnchor = document.getElementById("logout");
-logoutAnchor.addEventListener("click", logout);
+logoutAnchor.addEventListener("click", () => {
+  sessionStorage.removeItem("user");
+});
 
 window.onload = () => {
   if (!sessionStorage.getItem("user")) {
     logoutAnchor.click();
     return;
   }
+  user = JSON.parse(sessionStorage.getItem("user"));
+
+  document.getElementById(
+    "welcome-title"
+  ).innerText = `Bienvenido, ${user.name}`;
+
   configureVideo();
 };
 
