@@ -6,7 +6,7 @@ const videoRouter = express.Router();
 module.exports = videoRouter;
 
 videoRouter.get("/video.m3u8", (req, res) => {
-  console.log("requesting playlist file");
+  console.log("Serving playlist file");
   let file = createPlaylistFile();
   console.log(file.toString());
 
@@ -15,6 +15,6 @@ videoRouter.get("/video.m3u8", (req, res) => {
 });
 
 videoRouter.get("/:resource", (req, res) => {
-  console.log("requesting file", req.params.resource);
+  console.log("Serving file", req.params.resource);
   res.sendFile(path.join(__dirname, "videos", req.params.resource));
 });
