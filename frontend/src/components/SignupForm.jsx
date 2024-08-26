@@ -53,7 +53,7 @@ const SignupForm = () => {
         </label>
       </div>
 
-      <div className="d-flex flex-wrap gap-2">
+      <div className="d-flex flex-wrap gap-3">
         <button type="submit" className="btn btn-primary btn-block">
           Registrarse
         </button>
