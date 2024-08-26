@@ -9,7 +9,7 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     console.log("submitting");
 
-    let response = await fetch("/users/register", {
+    const response = await fetch("/users/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

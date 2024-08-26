@@ -8,7 +8,7 @@ window.onload = () => {
         logoutAnchor.click();
         return;
     }
-    let user = JSON.parse(sessionStorage.getItem("user"));
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     document.getElementById(
         "welcome-title"
@@ -19,8 +19,8 @@ window.onload = () => {
 
 function configureVideo() {
     if (Hls.isSupported()) {
-        let video = document.getElementById("video");
-        let hls = new Hls();
+        const video = document.getElementById("video");
+        const hls = new Hls();
         hls.on(Hls.Events.MEDIA_ATTACHED, function () {
             console.log("video and hls.js are now bound together !");
         });

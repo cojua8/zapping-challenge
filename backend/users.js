@@ -14,7 +14,7 @@ usersRouter.use(express.json());
  *  - Failure: { error: string }
  */
 usersRouter.post("/login", (req, res) => {
-    let { email, password } = req.body;
+    const { email, password } = req.body;
     getUser(email, (err, row) => {
         if (err) {
             console.error(err);
@@ -38,7 +38,7 @@ usersRouter.post("/login", (req, res) => {
  *  - Failure: { error: string }
  */
 usersRouter.post("/register", async (req, res) => {
-    let { name, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
 
     if (password !== confirmPassword) {
         res.status(400).json({ error: "PASSWORDS_DO_NOT_MATCH" });

@@ -1,10 +1,8 @@
-let formElement = document.getElementById("login-form");
-
-formElement.addEventListener("submit", async (e) => {
+document.getElementById("login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     console.log("submitting");
 
-    let response = await fetch("/users/login", {
+    const response = await fetch("/users/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

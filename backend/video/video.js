@@ -7,7 +7,7 @@ module.exports = videoRouter;
 
 videoRouter.get("/video.m3u8", (req, res) => {
     console.log("Serving playlist file");
-    let file = createPlaylistFile();
+    const file = createPlaylistFile();
     console.log(file.toString());
 
     res.header("Content-Type", "application/vnd.apple.mpegurl");

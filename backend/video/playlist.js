@@ -6,11 +6,11 @@ module.exports = { createPlaylistFile, moveToFinalSegments };
  * Creates an in-memory playlist file for the video stream
  */
 function createPlaylistFile() {
-    let segmentsCount = elapsedSegments();
+    const segmentsCount = elapsedSegments();
 
-    let headers = createPlaylistHeaders(segmentsCount);
-    let segments = createPlaylistSegments(segmentsCount);
-    let footer = createPlaylistFooter(segmentsCount);
+    const headers = createPlaylistHeaders(segmentsCount);
+    const segments = createPlaylistSegments(segmentsCount);
+    const footer = createPlaylistFooter(segmentsCount);
 
     return Buffer.from(headers + segments + footer);
 }
