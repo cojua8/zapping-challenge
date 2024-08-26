@@ -6,7 +6,9 @@ import UserProvider from "./contexts/userContext.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserProvider>
-      <App />
+      <div className="container">
+        <App />
+      </div>
     </UserProvider>
   </StrictMode>
 );

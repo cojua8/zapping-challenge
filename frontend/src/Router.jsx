@@ -12,6 +12,7 @@ const MainRouter = () => {
 const publicRouter = createBrowserRouter([
   { path: "/", element: <Login /> },
   { path: "/signup", element: <Signup /> },
+  { path: "/player", element: <Player /> },
 ]);
 
 const privateRouter = createBrowserRouter([
