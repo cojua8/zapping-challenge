@@ -3,4 +3,4 @@ const constants = {
     PLAYLIST_SIZE: 3,
 };
 
-module.exports = constants;
+export default constants;

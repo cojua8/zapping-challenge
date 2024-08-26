@@ -1,9 +1,9 @@
 import express from "express";
 import path from "path";
-import { createPlaylistFile, moveToFinalSegments } from "./playlist";
+import { createPlaylistFile, moveToFinalSegments } from "./playlist.js";
 
 const videoRouter = express.Router();
-module.exports = videoRouter;
+export default videoRouter;
 
 videoRouter.get("/video.m3u8", (req, res) => {
     console.log("Serving playlist file");

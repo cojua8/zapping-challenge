@@ -1,8 +1,8 @@
 import express from "express";
-import { createUser, getUser } from "./database";
+import { createUser, getUser } from "./database.js";
 
 const usersRouter = express.Router();
-module.exports = usersRouter;
+export default usersRouter;
 
 usersRouter.use(express.json());
 

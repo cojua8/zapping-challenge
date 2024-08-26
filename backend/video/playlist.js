@@ -1,11 +1,9 @@
-import constants from "../constants";
-
-module.exports = { createPlaylistFile, moveToFinalSegments };
+import constants from "../constants.js";
 
 /**
  * Creates an in-memory playlist file for the video stream
  */
-function createPlaylistFile() {
+export function createPlaylistFile() {
     const segmentsCount = elapsedSegments();
 
     const headers = createPlaylistHeaders(segmentsCount);
@@ -81,7 +79,7 @@ function elapsedSegments() {
     );
 }
 
-function moveToFinalSegments() {
+export function moveToFinalSegments() {
     startedTimestamp =
         Date.now() -
         (constants.TOTAL_SEGMENTS - constants.PLAYLIST_SIZE - 1) * 10000;

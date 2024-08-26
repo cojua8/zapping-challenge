@@ -11,7 +11,7 @@ db.serialize(() => {
 /**
  * Gets a user by the provided email, and execute callback
  */
-function getUser(email, callback) {
+export function getUser(email, callback) {
     db.get(
         "SELECT name, email, password FROM users WHERE email = ?",
         [email],
@@ -20,7 +20,7 @@ function getUser(email, callback) {
 }
 
 /** Creates a new user */
-function createUser(email, name, password) {
+export function createUser(email, name, password) {
     db.run(
         "INSERT INTO users (email, name, password) VALUES (?, ?, ?)",
         [email, name, password],
@@ -31,5 +31,3 @@ function createUser(email, name, password) {
         }
     );
 }
-
-module.exports = { getUser, createUser };

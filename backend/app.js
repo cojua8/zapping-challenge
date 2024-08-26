@@ -1,6 +1,6 @@
 import express from "express";
-import usersRouter from "./users";
-import videoRouter from "./video/video";
+import usersRouter from "./users.js";
+import videoRouter from "./video/video.js";
 
 const app = express();
 
