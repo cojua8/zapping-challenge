@@ -1,8 +1,7 @@
-let user = undefined;
-
-let logoutAnchor = document.getElementById("logout");
-logoutAnchor.addEventListener("click", () => {
+let logoutButton = document.getElementById("logout-button");
+logoutButton.addEventListener("click", () => {
   sessionStorage.removeItem("user");
+  window.location.href = "index.html";
 });
 
 window.onload = () => {
@@ -10,7 +9,7 @@ window.onload = () => {
     logoutAnchor.click();
     return;
   }
-  user = JSON.parse(sessionStorage.getItem("user"));
+  let user = JSON.parse(sessionStorage.getItem("user"));
 
   document.getElementById(
     "welcome-title"
