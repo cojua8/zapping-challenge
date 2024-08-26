@@ -1,5 +1,4 @@
-let logoutButton = document.getElementById("logout-button");
-logoutButton.addEventListener("click", () => {
+document.getElementById("logout-button").addEventListener("click", () => {
   sessionStorage.removeItem("user");
   window.location.href = "index.html";
 });
