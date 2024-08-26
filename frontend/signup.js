@@ -5,9 +5,7 @@ window.onload = () => {
   }
 };
 
-let formElement = document.getElementById("signup-form");
-
-formElement.addEventListener("submit", async (e) => {
+document.getElementById("signup-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   console.log("submitting");
 
@@ -35,3 +33,12 @@ function getFormData() {
     confirmPassword: document.getElementById("confirm-password").value,
   };
 }
+
+document
+  .getElementById("set-form-values-button")
+  .addEventListener("click", async (e) => {
+    document.getElementById("name").value = "John Doe";
+    document.getElementById("email").value = "john@doe.com";
+    document.getElementById("password").value = "password";
+    document.getElementById("confirm-password").value = "password";
+  });

@@ -26,3 +26,10 @@ function getFormData() {
     password: document.getElementById("password").value,
   };
 }
+
+document
+  .getElementById("set-form-values-button")
+  .addEventListener("click", async (e) => {
+    document.getElementById("email").value = "john@doe.com";
+    document.getElementById("password").value = "password";
+  });
