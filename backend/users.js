@@ -1,5 +1,6 @@
-const express = require("express");
-const { getUser, createUser } = require("./database");
+import express from "express";
+import { createUser, getUser } from "./database";
+
 const usersRouter = express.Router();
 module.exports = usersRouter;
 

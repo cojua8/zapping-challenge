@@ -1,6 +1,6 @@
-const express = require("express");
-const videoRouter = require("./video/video");
-const usersRouter = require("./users");
+import express from "express";
+import usersRouter from "./users";
+import videoRouter from "./video/video";
 
 const app = express();
 

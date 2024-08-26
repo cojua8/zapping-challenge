@@ -1,4 +1,4 @@
-const constants = require("../constants");
+import constants from "../constants";
 
 module.exports = { createPlaylistFile, moveToFinalSegments };
 

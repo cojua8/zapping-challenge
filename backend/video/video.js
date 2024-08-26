@@ -1,6 +1,6 @@
-const express = require("express");
-const path = require("path");
-const { createPlaylistFile, moveToFinalSegments } = require("./playlist");
+import express from "express";
+import path from "path";
+import { createPlaylistFile, moveToFinalSegments } from "./playlist";
 
 const videoRouter = express.Router();
 module.exports = videoRouter;
