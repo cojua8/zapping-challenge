@@ -1,11 +1,13 @@
-document.getElementById("logout-button").addEventListener("click", () => {
+const logoutButton = document.getElementById("logout-button");
+
+logoutButton.addEventListener("click", () => {
     sessionStorage.removeItem("user");
     window.location.href = "index.html";
 });
 
 window.onload = () => {
     if (!sessionStorage.getItem("user")) {
-        logoutAnchor.click();
+        logoutButton.click();
         return;
     }
     const user = JSON.parse(sessionStorage.getItem("user"));
