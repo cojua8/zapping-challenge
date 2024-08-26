@@ -1,11 +1,11 @@
+import { NavLink } from "react-router-dom";
 const PublicNavbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary mb-4">
       <div className="container-fluid">
         <div>
           <a className="navbar-brand" href="#">
-            {" "}
-            Zapping HLS{" "}
+            Zapping HLS
           </a>
         </div>
         <button
@@ -22,14 +22,14 @@ const PublicNavbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <NavLink className="nav-link" to="/">
                 Inicio
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" aria-current="page" href="signup.html">
+              <NavLink className="nav-link" to="/signup">
                 Regístrate
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
