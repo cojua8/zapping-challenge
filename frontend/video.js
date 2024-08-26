@@ -35,3 +35,19 @@ function configureVideo() {
     hls.attachMedia(video);
   }
 }
+
+document.getElementById("video").addEventListener("ended", () => {
+  alert("¡Muchas gracias por ver el video!");
+});
+
+document.getElementById("end-video-button").addEventListener("click", () => {
+  fetch("/video/end", {
+    method: "POST",
+  })
+    .then(() => {
+      location.reload();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});

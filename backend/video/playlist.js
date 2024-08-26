@@ -1,6 +1,6 @@
 const constants = require("../constants");
 
-module.exports = createPlaylistFile;
+module.exports = { createPlaylistFile, moveToFinalSegments };
 
 /**
  * Creates an in-memory playlist file for the video stream
@@ -76,4 +76,10 @@ function elapsedSegments() {
     Math.trunc((Date.now() - startedTimestamp) / 10000),
     constants.TOTAL_SEGMENTS + 1
   );
+}
+
+function moveToFinalSegments() {
+  startedTimestamp =
+    Date.now() -
+    (constants.TOTAL_SEGMENTS - constants.PLAYLIST_SIZE - 1) * 10000;
 }

@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const createPlaylistFile = require("./playlist");
+const { createPlaylistFile, moveToFinalSegments } = require("./playlist");
 
 const videoRouter = express.Router();
 module.exports = videoRouter;
@@ -17,4 +17,10 @@ videoRouter.get("/video.m3u8", (req, res) => {
 videoRouter.get("/:resource", (req, res) => {
   console.log("Serving file", req.params.resource);
   res.sendFile(path.join(__dirname, "videos", req.params.resource));
+});
+
+videoRouter.post("/end", (req, res) => {
+  console.log("Moving to end of video");
+  moveToFinalSegments();
+  res.sendStatus(200);
 });
