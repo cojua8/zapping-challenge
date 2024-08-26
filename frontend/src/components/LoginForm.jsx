@@ -1,23 +1,34 @@
+import { FormProvider, useForm } from "react-hook-form";
+
 const LoginForm = () => {
+  const methods = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  const fillForm = () => {
+    methods.setValue("email", "john@doe.com");
+    methods.setValue("password", "password");
+  };
+
   return (
-    <form id="login-form">
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
       <div className="form-floating mb-4">
         <input
           type="email"
-          id="email"
           className="form-control"
           placeholder="my@email.com"
           required
+            {...methods.register("email")}
         />
         <label htmlFor="email">Email</label>
       </div>
       <div className="form-outline form-floating mb-4">
         <input
           type="password"
-          id="password"
           className="form-control"
           placeholder="******"
           required
+            {...methods.register("password")}
         />
         <label htmlFor="password">Contraseña</label>
       </div>
@@ -28,7 +39,7 @@ const LoginForm = () => {
           </button>
           <button
             type="button"
-            id="set-form-values-button"
+              onClick={fillForm}
             className="btn btn-outline-success btn-block"
           >
             Llenar formulario
@@ -39,6 +50,7 @@ const LoginForm = () => {
         </p>
       </div>
     </form>
+    </FormProvider>
   );
 };
 
