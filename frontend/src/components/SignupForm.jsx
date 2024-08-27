@@ -1,14 +1,28 @@
 import { FormProvider, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../contexts/userContext";
+import service from "../services/users";
 
 const SignupForm = () => {
+  const { setUser } = useUser();
+  const navigate = useNavigate();
+
   const methods = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await service.registerUser(data);
+      setUser(response.data);
+      navigate("/player");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const fillForm = () => {
     methods.setValue("name", "John Doe");
     methods.setValue("email", "john@doe.com");
     methods.setValue("password", "password");
-    methods.setValue("confirm-password", "password");
+    methods.setValue("confirmPassword", "password");
   };
 
   return (
@@ -59,7 +73,7 @@ const SignupForm = () => {
             className="form-control"
             placeholder="****"
             required
-            {...methods.register("confirm-password")}
+            {...methods.register("confirmPassword")}
           />
           <label className="form-label" htmlFor="confirm-password">
             Verificar contraseña

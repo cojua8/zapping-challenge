@@ -1,9 +1,22 @@
 import { FormProvider, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../contexts/userContext";
+import service from "../services/users";
 
 const LoginForm = () => {
+  const { setUser } = useUser();
+  const navigate = useNavigate();
   const methods = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await service.loginUser(data);
+      setUser(response.data);
+      navigate("/player");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const fillForm = () => {
     methods.setValue("email", "john@doe.com");
