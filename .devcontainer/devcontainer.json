@@ -1,7 +1,11 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
   "name": "Zapping challenge",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "dockerComposeFile": [
+		"./docker-compose.yml"
+	],
+	"service": "api",
+	"workspaceFolder": "/app",
   "customizations": {
     "vscode": {
       "extensions": [

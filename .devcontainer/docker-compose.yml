@@ -1,0 +1,29 @@
+volumes:
+  db-data:
+
+
+services:
+  api:
+    container_name: zapping-hls
+    image: mcr.microsoft.com/devcontainers/javascript-node:20
+
+    volumes:
+      - ..:/app
+      
+
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+    ports:
+      - 3000:3000
+      - 9000:5173
+
+  db:
+    image: postgres:16.3
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=zapping
+    ports:
+      - 5432:5432
