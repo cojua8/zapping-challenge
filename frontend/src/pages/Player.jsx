@@ -23,7 +23,7 @@ const Player = () => {
     <div>
       <PrivateNavbar />
       <div className="p-3 m-0 border-0 m-0 border-0">
-        <h1>Bienvenido</h1>
+        <h1>Bienvenido, {user.name}</h1>
         <VideoPlayer className="w-100" />
         <button onClick={endVideo} className="btn btn-primary">
           Ir a final de stream
