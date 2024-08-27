@@ -37,7 +37,7 @@ export async function createUser(email, name, password) {
         });
         return result.rows[0];
     } catch (e) {
-        console.error("Error creating user", e);
+        console.error("Error creating user", e.detail);
         return undefined;
     }
 }
