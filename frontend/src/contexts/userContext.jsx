@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-const useUser = () => {
+export const useUser = () => {
   const context = useContext(UserContext);
   if (context === undefined) {
     throw new Error("useUser must be used within a UserProvider");
@@ -20,4 +20,4 @@ const useUser = () => {
   return context;
 };
 
-export default useUser;
+export default UserProvider;
