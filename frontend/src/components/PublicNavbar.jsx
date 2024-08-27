@@ -1,12 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const PublicNavbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary mb-4">
       <div className="container-fluid">
         <div>
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             Zapping HLS
-          </a>
+          </Link>
         </div>
         <button
           className="navbar-toggler"
