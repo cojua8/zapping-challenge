@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import { fileURLToPath } from "url";
 import { createPlaylistFile, moveToFinalSegments } from "./playlist.js";
 
 const videoRouter = express.Router();
@@ -16,7 +17,8 @@ videoRouter.get("/video.m3u8", (req, res) => {
 
 videoRouter.get("/:resource", (req, res) => {
     console.log("Serving file", req.params.resource);
-    res.sendFile(path.join(__dirname, "videos", req.params.resource));
+    const dirname = path.dirname(fileURLToPath(import.meta.url));
+    res.sendFile(path.join(dirname, "videos", req.params.resource));
 });
 
 videoRouter.post("/end", (req, res) => {
