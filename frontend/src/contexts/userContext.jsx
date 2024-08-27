@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { createContext, useContext, useState } from "react";
 
 const UserContext = createContext(undefined);
@@ -13,11 +12,7 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-UserProvider.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
-export const useUser = () => {
+const useUser = () => {
   const context = useContext(UserContext);
   if (context === undefined) {
     throw new Error("useUser must be used within a UserProvider");
@@ -25,4 +20,4 @@ export const useUser = () => {
   return context;
 };
 
-export default UserProvider;
+export default useUser;
