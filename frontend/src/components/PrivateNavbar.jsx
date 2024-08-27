@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/userContext";
 const PrivateNavbar = () => {
   const { setUser } = useUser();
@@ -13,9 +13,9 @@ const PrivateNavbar = () => {
     <nav className="navbar navbar-expand-lg bg-body-tertiary mb-4">
       <div className="container-fluid">
         <div>
-          <a className="navbar-brand" href="index.html">
+          <Link className="navbar-brand" to="/player">
             Zapping HLS
-          </a>
+          </Link>
         </div>
 
         <button
