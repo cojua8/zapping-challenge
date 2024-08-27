@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -24,13 +25,17 @@ const SignupForm = () => {
       })
     ),
   });
+  const [submitError, setSubmitError] = useState(undefined);
+
   const onSubmit = async (data) => {
+    setSubmitError(undefined);
     try {
       const response = await service.registerUser(data);
       setUser(response.data);
       navigate("/player");
     } catch (error) {
       console.error(error);
+      setSubmitError("Email ya está en uso");
     }
   };
 
@@ -111,7 +116,7 @@ const SignupForm = () => {
             {methods.formState.errors.confirmPassword?.message}
           </p>
         </div>
-
+        {submitError && <p className="text-danger">{submitError}</p>}
         <div className="d-flex flex-wrap gap-3">
           <button type="submit" className="btn btn-primary btn-block">
             Registrarse

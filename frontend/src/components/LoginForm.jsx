@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -19,14 +20,17 @@ const LoginForm = () => {
       })
     ),
   });
+  const [submitError, setSubmitError] = useState(undefined);
 
   const onSubmit = async (data) => {
+    setSubmitError(undefined);
     try {
       const response = await service.loginUser(data);
       setUser(response.data);
       navigate("/player");
     } catch (error) {
       console.error(error);
+      setSubmitError("Email o contraseña incorrectos");
     }
   };
 
@@ -66,6 +70,8 @@ const LoginForm = () => {
             {methods.formState.errors.password?.message}
           </p>
         </div>
+
+        {submitError && <p className="text-danger">{submitError}</p>}
         <div className="d-flex justify-content-between align-items-start flex-wrap gap-2">
           <div className="d-flex gap-3 flex-wrap">
             <button type="submit" className="btn btn-primary btn-block">
