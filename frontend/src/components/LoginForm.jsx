@@ -29,8 +29,14 @@ const LoginForm = () => {
       setUser(response.data);
       navigate("/player");
     } catch (error) {
-      console.error(error);
-      setSubmitError("Email o contraseña incorrectos");
+      if (
+        error.status === 400 &&
+        error.response.data.error === "BAD_CREDENTIALS"
+      ) {
+        setSubmitError("Email o contraseña incorrectos");
+      } else {
+        setSubmitError("Un error ha ocurrido. Intente nuevamente");
+      }
     }
   };
 

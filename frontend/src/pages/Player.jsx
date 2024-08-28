@@ -20,28 +20,35 @@ const Player = () => {
     navigate(0);
   };
 
-  return (
-    <div>
-      <PrivateNavbar />
-      <div className="p-3 m-0 border-0 m-0 border-0">
-        <h1>Bienvenido, {user.name}</h1>
-        <div className="w-100 mb-2">
-          <VideoPlayer />
-        </div>
-        <div className="d-flex flex-wrap gap-2">
-          <button
-            onClick={() => moveVideo("start")}
-            className="btn btn-primary"
-          >
-            Reiniciar stream
-          </button>
-          <button onClick={() => moveVideo("end")} className="btn btn-primary">
-            Ir al final del stream
-          </button>
+  if (!user) {
+    return <div></div>;
+  } else {
+    return (
+      <div>
+        <PrivateNavbar />
+        <div className="p-3 m-0 border-0 m-0 border-0">
+          <h1>Bienvenido, {user.name}</h1>
+          <div className="w-100 mb-2">
+            <VideoPlayer />
+          </div>
+          <div className="d-flex flex-wrap gap-2">
+            <button
+              onClick={() => moveVideo("start")}
+              className="btn btn-primary"
+            >
+              Reiniciar stream
+            </button>
+            <button
+              onClick={() => moveVideo("end")}
+              className="btn btn-primary"
+            >
+              Ir al final del stream
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Player;

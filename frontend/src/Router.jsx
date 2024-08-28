@@ -4,18 +4,12 @@ import Player from "./pages/Player";
 import Signup from "./pages/Signup";
 
 const MainRouter = () => {
-  if (1 === 1) return <RouterProvider router={publicRouter} />;
-
-  return <RouterProvider router={privateRouter} />;
+  return <RouterProvider router={router} />;
 };
 
-const publicRouter = createBrowserRouter([
+const router = createBrowserRouter([
   { path: "/", element: <Login /> },
   { path: "/signup", element: <Signup /> },
-  { path: "/player", element: <Player /> },
-]);
-
-const privateRouter = createBrowserRouter([
   { path: "/player", element: <Player /> },
 ]);
 

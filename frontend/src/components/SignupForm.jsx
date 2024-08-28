@@ -34,8 +34,16 @@ const SignupForm = () => {
       setUser(response.data);
       navigate("/player");
     } catch (error) {
-      console.error(error);
-      setSubmitError("Email ya está en uso");
+      if (error.status === 400) {
+        const errorCode = error.response.data.error;
+        if (errorCode === "PASSWORDS_DO_NOT_MATCH") {
+          setSubmitError("Las contraseñas no coinciden");
+        } else if (errorCode === "USER_ALREADY_EXISTS") {
+          setSubmitError("El usuario ya existe");
+        }
+      } else {
+        setSubmitError("Un error ha ocurrido. Intente nuevamente");
+      }
     }
   };
 
