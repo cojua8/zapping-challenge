@@ -31,6 +31,10 @@ const Player = () => {
           <div className="w-100 mb-2">
             <VideoPlayer />
           </div>
+          <p>
+            Estos botones sirven para manipular el stream. De todas maneras
+            siempre mantiene la condición de "en vivo"
+          </p>
           <div className="d-flex flex-wrap gap-2">
             <button
               onClick={() => moveVideo("start")}
@@ -42,7 +46,7 @@ const Player = () => {
               onClick={() => moveVideo("end")}
               className="btn btn-primary"
             >
-              Ir al final del stream
+              Mover a escena post créditos
             </button>
           </div>
         </div>
