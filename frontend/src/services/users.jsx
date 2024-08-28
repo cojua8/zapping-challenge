@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const createHttp = (
-  baseURL = "http://localhost:3000",
+  baseURL = import.meta.env.VITE_BACKEND_URL,
   contentType = "application/json"
 ) => {
   const headers = {

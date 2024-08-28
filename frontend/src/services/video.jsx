@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const createHttp = (baseURL = "http://localhost:3000") => {
+const createHttp = (baseURL = import.meta.env.VITE_BACKEND_URL) => {
   return axios.create({
     baseURL,
   });

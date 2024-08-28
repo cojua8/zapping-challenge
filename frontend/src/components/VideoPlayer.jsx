@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
+const videoUrl = `${import.meta.env.VITE_BACKEND_URL}/video/video.m3u8`;
+
 const VideoPlayer = ({ className }) => {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
@@ -20,7 +22,7 @@ const VideoPlayer = ({ className }) => {
         fluid: true,
         sources: [
           {
-            src: "http://localhost:3000/video/video.m3u8",
+            src: videoUrl,
             type: "application/x-mpegURL",
           },
         ],
@@ -45,7 +47,7 @@ const VideoPlayer = ({ className }) => {
     } else {
       const player = playerRef.current;
       player.autoplay(true);
-      player.src("http://localhost:3000/video/video.m3u8");
+      player.src(videoUrl);
     }
   }, [videoRef]);
 
