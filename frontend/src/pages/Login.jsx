@@ -9,7 +9,7 @@ const Login = () => {
         <div className="d-lg-flex justify-content-between gap-5">
           <div className="w-100 w-lg-50">
             <h1>Bienvenido</h1>
-            <div>
+            <div className="text-justify">
               "Big Buck Bunny" (nombre código Peach) es un corto animado del
               Instituto Blender, parte de la Fundación Blender. Como la previa
               película de la fundación, "Elephants Dream", esta película se
