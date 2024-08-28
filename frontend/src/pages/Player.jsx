@@ -15,8 +15,9 @@ const Player = () => {
     }
   }, [user, navigate]);
 
-  const endVideo = async () => {
-    await service.setVideoToEnd();
+  const moveVideo = async (location) => {
+    await service.setVideoTo(location);
+    navigate(0);
   };
 
   return (
@@ -27,9 +28,17 @@ const Player = () => {
         <div className="w-100 mb-2">
           <VideoPlayer />
         </div>
-        <button onClick={endVideo} className="btn btn-primary">
-          Ir a final de stream
-        </button>
+        <div className="d-flex flex-wrap gap-2">
+          <button
+            onClick={() => moveVideo("start")}
+            className="btn btn-primary"
+          >
+            Reiniciar stream
+          </button>
+          <button onClick={() => moveVideo("end")} className="btn btn-primary">
+            Ir al final del stream
+          </button>
+        </div>
       </div>
     </div>
   );

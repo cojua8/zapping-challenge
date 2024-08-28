@@ -1,7 +1,11 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { createPlaylistFile, moveToFinalSegments } from "./playlist.js";
+import {
+    createPlaylistFile,
+    moveToFinalSegment,
+    moveToStartingSegment,
+} from "./playlist.js";
 
 const videoRouter = express.Router();
 export default videoRouter;
@@ -21,8 +25,18 @@ videoRouter.get("/:resource", (req, res) => {
     res.sendFile(path.join(dirname, "videos", req.params.resource));
 });
 
-videoRouter.post("/end", (req, res) => {
-    console.log("Moving to end of video");
-    moveToFinalSegments();
+videoRouter.post("/move", (req, res) => {
+    if (req.query.to === "end") {
+        console.log("Moving to end of video");
+        moveToFinalSegment();
+    } else if (req.query.to === "start") {
+        console.log("Moving to start of video");
+        moveToStartingSegment();
+    } else {
+        console.error(
+            "Invalid move query parameter",
+            JSON.stringify(req.query)
+        );
+    }
     res.sendStatus(200);
 });

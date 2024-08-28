@@ -79,8 +79,14 @@ function elapsedSegments() {
     );
 }
 
-export function moveToFinalSegments() {
-    startedTimestamp =
-        Date.now() -
-        (constants.TOTAL_SEGMENTS - constants.PLAYLIST_SIZE - 1) * 10000;
+function moveToSegment(segmentNumber) {
+    startedTimestamp = Date.now() - segmentNumber * 10000;
+}
+
+export function moveToFinalSegment() {
+    moveToSegment(constants.TOTAL_SEGMENTS - constants.PLAYLIST_SIZE - 1);
+}
+
+export function moveToStartingSegment() {
+    moveToSegment(0);
 }

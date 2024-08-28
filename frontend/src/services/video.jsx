@@ -7,7 +7,7 @@ const createHttp = (baseURL = import.meta.env.VITE_BACKEND_URL) => {
 };
 
 export default {
-  setVideoToEnd() {
-    return createHttp().post("/video/end");
+  setVideoTo(location) {
+    return createHttp().post(`/video/move?to=${location}`);
   },
 };
