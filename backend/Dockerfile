@@ -1,12 +1,18 @@
 # Use the official Node.js image as the base image
 FROM node:20
 
-# Set the working directory
+RUN apt-get update && apt-get install -yy pipx && pipx install gdown
+
+#download the video
+WORKDIR /usr/video
+RUN pipx run gdown 1exGq6BJ6r1lXezOanp88sWwxqcMbDntJ -O file.zip
+RUN unzip file.zip -d .
+RUN mv "hls test" videos
+RUN rm file.zip
+ENV VIDEOS_PATH=/usr/video/videos
+
 WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json
 COPY . .
-
 # Install dependencies
 RUN npm install
 
