@@ -4,7 +4,7 @@ import "video.js/dist/video-js.css";
 
 const videoUrl = `${import.meta.env.VITE_BACKEND_URL}/video/video.m3u8`;
 
-const VideoPlayer = ({ className }) => {
+const VideoPlayer = () => {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
 
@@ -64,7 +64,7 @@ const VideoPlayer = ({ className }) => {
   }, [playerRef]);
 
   return (
-    <div className={className}>
+    <div>
       <div data-vjs-player>
         <div ref={videoRef} />
       </div>
