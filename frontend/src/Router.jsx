@@ -1,10 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useUser } from "./contexts/userContext";
 import Login from "./pages/Login";
 import Player from "./pages/Player";
 import Signup from "./pages/Signup";
 
 const MainRouter = () => {
-  if (1 === 1) return <RouterProvider router={publicRouter} />;
+  const { user } = useUser();
+
+  if (1 == 1) return <RouterProvider router={publicRouter} />;
 
   return <RouterProvider router={privateRouter} />;
 };
