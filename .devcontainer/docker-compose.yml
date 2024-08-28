@@ -8,14 +8,20 @@ services:
     image: mcr.microsoft.com/devcontainers/javascript-node:20
 
     volumes:
-      - ..:/app
-      
+      - ..:/app      
 
     command: /bin/sh -c "while sleep 1000; do :; done"
-
     ports:
       - 3000:3000
       - 9000:5173
+
+    environment:
+      - VITE_BACKEND_URL=http://localhost:3000
+      - PGHOST=db
+      - PGUSER=user
+      - PGPASSWORD=password
+      - PGPORT=5432
+      - PGDATABASE=zapping
 
   db:
     image: postgres:16.3
