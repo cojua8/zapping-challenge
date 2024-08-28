@@ -1,0 +1,39 @@
+volumes:
+  db-data:
+
+services:
+  backend:
+    container_name: zapping-app-backend
+    build:
+      context: ./backend
+    depends_on:
+      - db
+    ports:
+      - 4000:3000
+    environment:
+      - PGHOST=db
+      - PGUSER=user
+      - PGPASSWORD=password
+      - PGPORT=5432
+      - PGDATABASE=zapping
+
+  frontend:
+    container_name: zapping-app-frontend
+    build:
+      context: ./frontend
+      args:
+        - VITE_BACKEND_URL=http://localhost:4000
+    ports:
+      - 9000:3000
+
+  db:
+    container_name: database
+    image: postgres:16.3
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=zapping
+    ports:
+      - 5432:5432
