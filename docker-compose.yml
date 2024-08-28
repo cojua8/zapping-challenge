@@ -1,13 +1,12 @@
-volumes:
-  db-data:
-
 services:
   backend:
     container_name: zapping-app-backend
     build:
       context: ./backend
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+
     ports:
       - 4000:3000
     environment:
@@ -29,11 +28,15 @@ services:
   db:
     container_name: database
     image: postgres:16.3
-    volumes:
-      - db-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=zapping
     ports:
       - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
