@@ -1,0 +1,22 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+    "name": "Zapping challenge backend",
+    "dockerComposeFile": [
+          "./docker-compose.yml"
+      ],
+    "service": "api",
+    "workspaceFolder": "/usr/src/app/backend",
+    "customizations": {
+      "vscode": {	"extensions": [
+          "eamodio.gitlens",
+          "rust-lang.rust-analyzer",
+          "vadimcn.vscode-lldb",
+          "GitHub.copilot",
+          "GitHub.copilot-chat",
+          "VisualStudioExptTeam.vscodeintellicode",
+          "VisualStudioExptTeam.intellicode-api-usage-examples"
+        ]
+      }
+    }
+  }
+  
