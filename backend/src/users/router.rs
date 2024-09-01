@@ -14,8 +14,8 @@ use super::models::{Error, LoginBody, RegisterBody};
 
 pub fn create_router() -> Router<Config> {
     Router::new()
-        .route("/register", post(register_user_handler))
-        .route("/login", post(login_user_handler))
+        .route("/register/", post(register_user_handler))
+        .route("/login/", post(login_user_handler))
 }
 
 async fn register_user_handler(

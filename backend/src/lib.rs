@@ -7,20 +7,37 @@ use std::{
 };
 
 use axum::{routing::get, Router};
+use database::migrator::refresh_migrations;
 use sea_orm::{Database, DatabaseConnection};
+use tower::ServiceBuilder;
+use tower_http::cors::CorsLayer;
 
 pub async fn create_app() {
     let started_time = time::SystemTime::now();
-    let config = Config::build(started_time).await.unwrap();
+    let db_connection = setup_database().await;
+    let config = Config::build(started_time, db_connection).await.unwrap();
     let app = Router::new()
         .route("/", get(|| async { "Hello, World!" }))
         .nest("/video", video::router::create_router())
         .nest("/users", users::router::create_router())
+        .layer(ServiceBuilder::new().layer(CorsLayer::permissive()))
         .with_state(config);
 
     // run our app with hyper, listening globally on port 3000
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
+}
+
+async fn setup_database() -> DatabaseConnection {
+    let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+
+    let db_connection = Database::connect(&database_url)
+        .await
+        .expect("Failed to connect to database");
+
+    refresh_migrations(&db_connection).await;
+
+    db_connection
 }
 
 #[derive(Clone)]
@@ -33,7 +50,10 @@ struct Config {
 }
 
 impl Config {
-    async fn build(started_time: SystemTime) -> Result<Self, &'static str> {
+    async fn build(
+        started_time: SystemTime,
+        database_connection: DatabaseConnection,
+    ) -> Result<Self, &'static str> {
         let videos_path = std::env::var("VIDEOS_PATH").expect("VIDEOS_PATH must be set");
         let total_segments = std::env::var("TOTAL_SEGMENTS")
             .expect("TOTAL_SEGMENTS must be set")
@@ -43,11 +63,6 @@ impl Config {
             .expect("PLAYLIST_SIZE must be set")
             .parse()
             .unwrap();
-
-        let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-        let database_connection = Database::connect(&database_url)
-            .await
-            .expect("Failed to connect to database");
 
         Ok(Self {
             videos_path,
