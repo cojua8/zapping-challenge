@@ -18,7 +18,6 @@ use super::playlist::create_playlist;
 
 pub fn create_router() -> Router<Config> {
     Router::new()
-        .route("/", get(|| async { "Hello from video!" }))
         .route("/video.m3u8", get(get_playlist_handler))
         .route("/:resource", get(get_resource_handler))
         .route("/move", post(move_time_handler))

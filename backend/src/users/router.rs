@@ -5,7 +5,7 @@ use axum::{
     extract::State,
     http::StatusCode,
     response::{IntoResponse, Response},
-    routing::{get, post},
+    routing::post,
     Json, Router,
 };
 use sea_orm::DbErr;
@@ -14,7 +14,6 @@ use super::models::{Error, LoginBody, RegisterBody};
 
 pub fn create_router() -> Router<Config> {
     Router::new()
-        .route("/", get(|| async { "Hello from users!" }))
         .route("/register", post(register_user_handler))
         .route("/login", post(login_user_handler))
 }
