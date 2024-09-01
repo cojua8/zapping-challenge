@@ -49,13 +49,21 @@ async fn login_user_handler(State(config): State<Config>, login_body: Json<Login
     let user = get_user_by_email(&login_body.email, &config.database_connection).await;
 
     match user {
-        Some(user) => {
-            if user.password == login_body.password {
-                (StatusCode::OK, Json(user)).into_response()
-            } else {
+        Ok(maybe_user) => match maybe_user {
+            Some(user) => {
+                if user.password == login_body.password {
+                    (StatusCode::OK, Json(user)).into_response()
+                } else {
+                    (StatusCode::NOT_FOUND, Json(Error::new("BAD_CREDENTIALS"))).into_response()
+                }
+            }
+            None => (StatusCode::NOT_FOUND, Json(Error::new("BAD_CREDENTIALS"))).into_response(),
+        },
+        Err(err) => match err {
+            DbErr::Query(_) => {
                 (StatusCode::NOT_FOUND, Json(Error::new("BAD_CREDENTIALS"))).into_response()
             }
-        }
-        None => (StatusCode::NOT_FOUND, Json(Error::new("BAD_CREDENTIALS"))).into_response(),
+            _ => StatusCode::INTERNAL_SERVER_ERROR.into_response(),
+        },
     }
 }
