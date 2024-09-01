@@ -8,4 +8,5 @@ Mejoras posibles:
 
 1. Hashing de contraseña (no se hizo para mantener la simplicidad).
 2. Realizar alguna acción cuando el stream termina, para que el usuario tenga feedback.
-3.
+3. Usar JWT u otra alternativa para manejar sesiones tanto en frontend como en backend
+4. 
