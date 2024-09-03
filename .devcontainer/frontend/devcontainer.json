@@ -1,11 +1,10 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
-  "name": "Zapping challenge",
-  "dockerComposeFile": [
-		"./docker-compose.yml"
-	],
-	"service": "api",
-	"workspaceFolder": "/app",
+  "name": "Zapping challenge frontend dev",
+  "dockerComposeFile": ["./docker-compose.yml"],
+  "service": "api",
+  "workspaceFolder": "/usr/src/app/frontend",
+  "postCreateCommand": "sudo chown $USER node_modules",
   "customizations": {
     "vscode": {
       "extensions": [
