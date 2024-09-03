@@ -14,7 +14,8 @@
         "eamodio.gitlens",
         "VisualStudioExptTeam.vscodeintellicode",
         "VisualStudioExptTeam.intellicode-api-usage-examples",
-        "ms-vscode.live-server"
+        "ms-vscode.live-server",
+        "svelte.svelte-vscode"
       ]
     }
   }
