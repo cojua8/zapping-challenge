@@ -2,4 +2,6 @@
   import Router from "./Router.svelte";
 </script>
 
-<Router />
+<div class="container">
+  <Router />
+</div>
