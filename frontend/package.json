@@ -21,6 +21,7 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "felte": "^1.2.14",
+    "hls.js": "^1.5.15",
     "svelte-routing": "^2.13.0",
     "yup": "^1.4.0"
   }
