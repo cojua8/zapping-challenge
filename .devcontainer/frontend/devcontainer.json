@@ -1,8 +1,8 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
   "name": "Zapping challenge frontend dev",
-  "dockerComposeFile": ["./docker-compose.yml"],
-  "service": "api",
+  "dockerComposeFile": ["../docker-compose.development.yml", "./docker-compose.yml"],
+  "service": "frontend",
   "workspaceFolder": "/usr/src/app/frontend",
   "postCreateCommand": "sudo chown $USER node_modules",
   "customizations": {

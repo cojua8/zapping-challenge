@@ -1,10 +1,10 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
-    "name": "Zapping challenge backend",
+    "name": "Zapping challenge backend dev",
     "dockerComposeFile": [
-          "./docker-compose.yml"
+          "../docker-compose.development.yml", "./docker-compose.yml"
       ],
-    "service": "api",
+    "service": "backend",
     "workspaceFolder": "/usr/src/app/backend",
     "customizations": {
       "vscode": {	"extensions": [

@@ -8,4 +8,4 @@ RUN pipx run gdown 1exGq6BJ6r1lXezOanp88sWwxqcMbDntJ -O file.zip \
     && rm file.zip
 ENV VIDEOS_PATH=/usr/video/videos
 
-CMD ["sleep", "infinity"]
+

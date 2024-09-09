@@ -1,20 +1,11 @@
 volumes:
-  node_modules:
+  cargo_target:
 
 
 services:
-  api:
-    container_name: zapping-hls-frontend-dev
-    image: mcr.microsoft.com/devcontainers/javascript-node:20
-
-    volumes:
-      - ../../:/usr/src/app
-      - node_modules:/usr/src/app/frontend/node_modules
-
+  frontend:    
     command: /bin/sh -c "while sleep 1000; do :; done"
-    ports:
-      - 9000:5173
-
-    environment:
-      - VITE_BACKEND_URL=http://localhost:3000
-      
+    
+    volumes:
+      - ../backend/:/usr/src/app/backend
+      - cargo_target:/usr/src/app/backend/target
