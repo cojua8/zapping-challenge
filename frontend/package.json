@@ -24,5 +24,8 @@
     "hls.js": "^1.5.15",
     "svelte-routing": "^2.13.0",
     "yup": "^1.4.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
